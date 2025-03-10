@@ -8,3 +8,26 @@ Random Lua Code Snippets/Notes
 -- end
 
 -- love.graphics.printf(text, 0, 0, love.graphics.getWidth())
+
+function love.keypressed(key)
+    if key == "backspace" then
+        -- get the byte offset to the last UTF-8 character in the string.
+        local byteoffset = utf8.offset(text, -1)
+
+        if byteoffset then
+            -- remove the last UTF-8 character.
+            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
+            text = string.sub(text, 1, byteoffset - 1)
+        end
+		coloredText:set({textColorBlack, text})
+		textXPosition = 0 -- this is needed to correct the 'cursor' position to the end of the new text length
+    end
+end
+
+	textXPosition = 0
+
+	textXPosition = textXPosition + coloredText:getWidth()
+    coloredText:add({textColorBlack, t}, textXPosition)
+	
+	    -- enable key repeat so backspace can be held down to trigger love.keypressed multiple times.
+    love.keyboard.setKeyRepeat(true)
