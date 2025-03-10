@@ -1,0 +1,10 @@
+Random Lua Code Snippets/Notes
+
+-- function love.mousepressed(x, y, button, istouch)
+   -- if button == 1 then
+      -- imgx = x -- move image to where mouse clicked
+      -- imgy = y
+   -- end
+-- end
+
+-- love.graphics.printf(text, 0, 0, love.graphics.getWidth())
