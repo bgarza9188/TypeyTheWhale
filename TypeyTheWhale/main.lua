@@ -10,7 +10,7 @@ local typedInWord = "..."
 local currentPromptText = "Help Typey the Whale swim as fast as you can type! Press 'Enter' to Start!"
 local wrongTryAgainText = "WRONG TRY AGAIN!"
 local textColorBlack = { 0, 0, 0 }
-local textColorRed = { 148, 0, 0 }
+local textColorRed = { .55, 0, 0 }
 local isDead = false
 local gameIsActive = false
 local timer = 0
@@ -42,7 +42,7 @@ function love.load()
     inputText = love.graphics.newText(font, { textColorBlack, typedInWord })
     wrongPromptText = love.graphics.newText(font, { textColorRed, "" })
     timerText = love.graphics.newText(font, { textColorRed, timeRemaining })
-    love.graphics.setBackgroundColor(love.math.colorFromBytes { 197, 226, 247 }) -- light blue
+    love.graphics.setBackgroundColor(love.math.colorFromBytes(197, 226, 247)) -- light blue
     love.keyboard.setTextInput(true)
     math.randomseed(os.time())
 end
