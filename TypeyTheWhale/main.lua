@@ -10,7 +10,6 @@ local typedInWord = "..."
 local currentPromptText = "Help Typey the Whale swim as fast as you can type! Press 'Enter' to Start!"
 local wrongTryAgainText = "WRONG TRY AGAIN!"
 local textColorBlack = { 0, 0, 0 }
-local textColorRed = { .55, 0, 0 }
 local isDead = false
 local gameIsActive = false
 local timer = 0
@@ -40,6 +39,7 @@ function love.load()
     local font = love.graphics.newFont(20, "mono")
     promptText = love.graphics.newText(font, { textColorBlack, currentPromptText })
     inputText = love.graphics.newText(font, { textColorBlack, typedInWord })
+    textColorRed = { love.math.colorFromBytes(184, 0, 0) }
     wrongPromptText = love.graphics.newText(font, { textColorRed, "" })
     timerText = love.graphics.newText(font, { textColorRed, timeRemaining })
     love.graphics.setBackgroundColor(love.math.colorFromBytes(197, 226, 247)) -- light blue
@@ -52,13 +52,13 @@ function love.draw()
     love.graphics.draw(inputText, 10, 30)
     love.graphics.draw(wrongPromptText, 10, 50)
     love.graphics.draw(timerText, windowSize - 60, windowSize - 30)
-    if isDead == false then
+    if isDead == false and timeRemaining > 0 then
         love.graphics.draw(whaleImage, whaleObject.body:getX(), whaleObject.body:getY())
-    else
+    elseif timeRemaining > 0 then
         love.graphics.draw(deadWhaleImage, whaleObject.body:getX(), whaleObject.body:getY())
     end
     if timeRemaining < 0 then
-        love.graphics.draw(gameEndWhaleImage, centeredWhaleXPosition, centeredWhaleYPosition)
+        love.graphics.draw(gameEndWhaleImage, whaleObject.body:getX(), whaleObject.body:getY())
     end
 end
 
